@@ -1261,9 +1261,9 @@ class Axis(martist.Artist):
         # for np.isclose.
         tol = (hi - lo) * 1e-5
         if self.remove_overlapping_locs:
-            minor_locs = [
+            minor_locs = np.asarray([
                 loc for loc, tr_loc in zip(minor_locs, tr_minor_locs)
-                if ~np.isclose(tr_loc, tr_major_locs, atol=tol, rtol=0).any()]
+                if ~np.isclose(tr_loc, tr_major_locs, atol=tol, rtol=0).any()])
         return minor_locs
 
     @_api.make_keyword_only("3.3", "minor")
